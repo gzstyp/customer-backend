@@ -23,10 +23,10 @@ public class CustomerService{
     @Autowired
     private DaoHandle daoHandle;
 
-    public String getListData(PageFormData params){
-        params = ToolClient.dataMysql(params);
-        if(params == null)return ToolClient.jsonValidateField();
-        final HashMap<String,Object> map = daoHandle.queryForPage(params,"customer.getListData","customer.getListTotal");
+    public String getListData(PageFormData formData){
+        formData = ToolClient.dataMysql(formData);
+        if(formData == null)return ToolClient.jsonValidateField();
+        final HashMap<String,Object> map = daoHandle.queryForPage(formData,"customer.getListData","customer.getListTotal");
         return ToolClient.jsonPage(map.get(ConfigFile.data),(Integer) map.get(ConfigFile.total));
     }
 
